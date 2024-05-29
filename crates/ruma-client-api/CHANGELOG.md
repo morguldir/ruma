@@ -4,6 +4,8 @@ Breaking changes:
 
 - `RoomSummary::heroes` now properly contains only `UserId` instead of `String`
   as before.
+- Make `Content-Type` and `Content-Disposition` mandatory when creating media
+  responses.
 
 Improvements:
 
@@ -11,6 +13,8 @@ Improvements:
 - Heroes in `sync::sync_events::v4`: `SyncRequestList` and `RoomSubscription`
   both have a new `include_heroes` field. `SlidingSyncRoom` has a new `heroes`
   field, with a new type `SlidingSyncRoomHero`.
+- Add function for checking if a `Content-Type` is considered "safe" for `inline`
+  rendering.
 
 # 0.18.0
 
