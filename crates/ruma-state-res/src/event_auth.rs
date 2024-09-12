@@ -826,7 +826,7 @@ fn check_power_levels(
 
         // If the current value is equal to the sender's current power level, reject
         if user != power_event.sender() && old_level == Some(&user_level) {
-            warn!("m.room.power_level cannot remove ops == to own");
+            warn!("m.room.power_level cannot remove ops == to own at {}", power_event.event_id());
             return Some(false); // cannot remove ops level == to own
         }
 
@@ -835,7 +835,7 @@ fn check_power_levels(
         let old_level_too_big = old_level > Some(&user_level);
         let new_level_too_big = new_level > Some(&user_level);
         if old_level_too_big || new_level_too_big {
-            warn!("m.room.power_level failed to add ops > than own");
+            warn!("m.room.power_level failed to add ops > than own  at {}", power_event.event_id());
             return Some(false); // cannot add ops greater than own
         }
     }
@@ -853,7 +853,7 @@ fn check_power_levels(
         let old_level_too_big = old_level > Some(&user_level);
         let new_level_too_big = new_level > Some(&user_level);
         if old_level_too_big || new_level_too_big {
-            warn!("m.room.power_level failed to add ops > than own");
+            warn!("m.room.power_level failed to add ops > than own at {}", power_event.event_id());
             return Some(false); // cannot add ops greater than own
         }
     }
@@ -868,7 +868,7 @@ fn check_power_levels(
             let old_level_too_big = old_level > user_level;
             let new_level_too_big = new_level > user_level;
             if old_level_too_big || new_level_too_big {
-                warn!("m.room.power_level failed to add ops > than own");
+                warn!("m.room.power_level failed to add ops > than own at {}", power_event.event_id());
                 return Some(false); // cannot add ops greater than own
             }
         }
@@ -884,7 +884,7 @@ fn check_power_levels(
             let new_level_too_big = new_lvl > user_level;
 
             if old_level_too_big || new_level_too_big {
-                warn!("cannot add ops > than own");
+                warn!("cannot add ops > than own  at {}", power_event.event_id());
                 return Some(false);
             }
         }
